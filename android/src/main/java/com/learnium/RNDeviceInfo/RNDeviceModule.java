@@ -243,6 +243,44 @@ public class RNDeviceModule extends ReactContextBaseJavaModule {
   }
 
   @ReactMethod
+  public String getIMEI() {
+
+    String imei = "Unknown";
+
+    TelephonyManager telephonyManager = (TelephonyManager) this.reactContext.getSystemService(Context.TELEPHONY_SERVICE);
+    int res = this.reactContext.checkCallingOrSelfPermission(Manifest.permission.READ_PHONE_STATE);
+
+    if (res == PackageManager.PERMISSION_GRANTED) {
+      try {
+        imei = telephonyManager.getDeviceId();  //Using deprecated to support older API versions;
+      } catch (Exception e) {
+        e.printStackTrace();
+      }
+    }
+
+    return imei;
+  }
+
+  @ReactMethod
+  public String getIMSI() {
+
+    String imsi = "Unknown";
+
+    TelephonyManager telephonyManager = (TelephonyManager) this.reactContext.getSystemService(Context.TELEPHONY_SERVICE);
+    int res = this.reactContext.checkCallingOrSelfPermission(Manifest.permission.READ_PHONE_STATE);
+
+    if (res == PackageManager.PERMISSION_GRANTED) {
+      try {
+        imsi = telephonyManager.getSubscriberId();
+      } catch (Exception e) {
+        e.printStackTrace();
+      }
+    }
+
+    return imsi;
+  }
+
+  @ReactMethod
   public BigInteger getTotalDiskCapacity() {
     try {
       StatFs root = new StatFs(Environment.getRootDirectory().getAbsolutePath());
@@ -428,6 +466,8 @@ public class RNDeviceModule extends ReactContextBaseJavaModule {
     constants.put("totalDiskCapacity", this.getTotalDiskCapacity());
     constants.put("freeDiskStorage", this.getFreeDiskStorage());
     constants.put("installReferrer", this.getInstallReferrer());
+    constants.put("imei", this.getIMEI());
+    constants.put("imsi", this.getIMSI());
 
     if (reactContext != null &&
          (reactContext.checkCallingOrSelfPermission(Manifest.permission.READ_PHONE_STATE) == PackageManager.PERMISSION_GRANTED ||
