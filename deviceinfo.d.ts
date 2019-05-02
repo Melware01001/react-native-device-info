@@ -54,6 +54,8 @@ declare const _default: {
   supportedABIs: () => string[];
   hasSystemFeature: (feature: string) => Promise<boolean>;
   getSystemAvailableFeatures: () => Promise<string[]>;
+  getIMEI: () => string;
+  getIMSI: () => string;
 };
 
 export default _default;
