@@ -374,7 +374,7 @@ export default {
     return RNDeviceInfo.getSystemAvailableFeatures();
   },
   getIMEI: function() {
-    return RNDeviceInfo.imei;
+    return RNDeviceInfo.getIMEI();
   },
   getIMSI: function() {
     return RNDeviceInfo.imsi;

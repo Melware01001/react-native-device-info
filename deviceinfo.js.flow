@@ -55,6 +55,6 @@ declare module.exports: {
   supportedABIs: () => string[],
   hasSystemFeature: (feature: string) => Promise<boolean>,
   getSystemAvailableFeatures: () => Promise<Array<string>>,
-  getIMEI: () => string,
+  getIMEI: () => Promise<string>,
   getIMSI: () => ?string
 };
