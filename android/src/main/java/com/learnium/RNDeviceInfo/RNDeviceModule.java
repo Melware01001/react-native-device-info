@@ -243,7 +243,7 @@ public class RNDeviceModule extends ReactContextBaseJavaModule {
   }
 
   @ReactMethod
-  public String getIMEI() {
+  public String getIMEI(Promise p) {
 
     String imei = "Unknown";
 
@@ -258,7 +258,7 @@ public class RNDeviceModule extends ReactContextBaseJavaModule {
       }
     }
 
-    return imei;
+    p.resolve(imei);
   }
 
   @ReactMethod
@@ -466,7 +466,6 @@ public class RNDeviceModule extends ReactContextBaseJavaModule {
     constants.put("totalDiskCapacity", this.getTotalDiskCapacity());
     constants.put("freeDiskStorage", this.getFreeDiskStorage());
     constants.put("installReferrer", this.getInstallReferrer());
-    constants.put("imei", this.getIMEI());
     constants.put("imsi", this.getIMSI());
 
     if (reactContext != null &&
