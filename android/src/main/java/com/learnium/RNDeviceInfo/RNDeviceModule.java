@@ -243,7 +243,7 @@ public class RNDeviceModule extends ReactContextBaseJavaModule {
   }
 
   @ReactMethod
-  public String getIMEI(Promise p) {
+  public void getIMEI(Promise p) {
 
     String imei = "Unknown";
 
